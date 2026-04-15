@@ -1,30 +1,118 @@
-# Conference AI — Multi-Agent Conference Planner
+# Event AI Planner  
+### Multi-Agent AI System for Event Planning  
 
-An end-to-end AI-powered multi-agent system for conference organization, built for the Pinch × IIT Roorkee General Championship 2026.
+## 1. Introduction  
 
-## Architecture
+Conferences and large-scale events involve multiple interconnected components such as sponsors, speakers, exhibitors, venues, pricing strategies, and marketing. Traditionally, organizing such events requires manual coordination across fragmented tools, making the process inefficient and difficult to scale.  
+
+This project presents an **AI-powered multi-agent system** that automates end-to-end conference planning using historical data, semantic search (RAG), and intelligent AI agents.
+
+---
+## 2. System Overview  
+
+The system follows a **modular multi-agent architecture**, where each agent specializes in one part of the event lifecycle.  
+
+### Key Capabilities  
+- Autonomous decision-making using AI agents  
+- Context sharing across agents  
+- Data-driven recommendations (not generic outputs)  
+- End-to-end event planning pipeline  
+
+---
+## 3. Architecture Design  
+
+### Multi-Agent Architecture  
+
+| Agent | Function |
+|------|--------|
+| Sponsor Agent | Recommends and ranks sponsors |
+| Speaker Agent | Suggests speakers and agenda |
+| Exhibitor Agent | Identifies and clusters exhibitors |
+| Venue Agent | Recommends venues |
+| Pricing Agent | Predicts pricing and attendance |
+| GTM Agent | Builds marketing strategy |
+| Event Ops Agent | Generates schedule and detects conflicts |
+---
+
+### Orchestrator 
+
+The **Orchestrator** is the central coordination engine responsible for managing the multi-agent pipeline.
+
+#### Responsibilities:
+- Agent execution sequencing  
+- Dependency resolution  
+- Context sharing  
+- Error handling using `_safe_run()`  
+
+#### Context Sharing Examples:
+- Speaker count → Pricing  
+- Sponsors → GTM  
+- Pricing → Event Ops  
+
+---
+## 4. Agent Design  
+
+| Agent | Primary Function | Output |
+|------|----------------|--------|
+| Sponsor Agent | Recommend sponsors | Tiered list + outreach emails |
+| Speaker Agent | Suggest speakers & agenda | Lineup + keynote themes |
+| Exhibitor Agent | Cluster exhibitors | Categorized list + pricing |
+| Venue Agent | Recommend venues | Ranked venues + negotiation tips |
+| Pricing Agent | Predict pricing | Revenue + break-even |
+| GTM Agent | Marketing strategy | 8-week GTM plan |
+| Event Ops Agent | Scheduling | Conflict-free agenda |
+
+---
+## 5. Results  
+
+The system generates a **complete conference plan** via a Streamlit dashboard.
+
+| Module        | Output                                          |
+|---------------|--------------------------------------------------|
+| Sponsors      | Ranked sponsors + outreach emails               |
+| Speakers      | Speaker lineup + session types                  |
+| Exhibitors    | Clustered exhibitors + pricing                  |
+| Venues        | Ranked venues + cost estimates                  |
+| Pricing       | Revenue forecasts + break-even analysis         |
+| GTM Strategy  | Marketing calendar + outreach templates         |
+| Schedule      | Conflict-free agenda                            |
+
+---
+## Project Structure
 
 ```
-conference-ai/
+## 🖥️ Project Structure
+
+Event_AI_Planner/
+│
 ├── data/
-│   └── events_merged_2025_2026.xlsx   ← Your merged dataset (69 events)
+│   └── events_merged_2025_2026.xlsx     
+│
 ├── agents/
-│   ├── orchestrator.py                ← Routes tasks between all agents
-│   ├── sponsor_agent.py               ← Sponsor recommendations + outreach
-│   ├── speaker_agent.py               ← Speaker discovery + agenda builder
-│   ├── exhibitor_agent.py             ← Exhibitor clustering + booth pricing
-│   ├── venue_agent.py                 ← Venue recommendations + scoring
-│   ├── pricing_agent.py               ← Ticket pricing model + revenue forecast
-│   ├── gtm_agent.py                   ← Community identification + GTM plan
-│   └── event_ops_agent.py             ← Schedule builder + conflict detection
+│   ├── orchestrator.py                  
+│   ├── sponsor_agent.py                 
+│   ├── speaker_agent.py                 
+│   ├── exhibitor_agent.py               
+│   ├── venue_agent.py                   
+│   ├── pricing_agent.py                
+│   ├── gtm_agent.py                     
+│   └── event_ops_agent.py             
+│
 ├── tools/
-│   ├── data_loader.py                 ← Loads and filters the Excel dataset
-│   └── embeddings.py                  ← ChromaDB vector store for RAG
+│   ├── data_loader.py                   
+│   ├── embeddings.py                   
+│   ├── llm.py                           
+│   ├── ranker.py                        
+│   ├── scoring.py                     
+│   └── web_scraper.py                   
+│
 ├── ui/
-│   └── app.py                         ← Streamlit frontend
-├── setup.py                           ← One-time setup script
-├── requirements.txt
-└── .env.example
+│   └── app.py                          
+│
+├── requirements.txt                    
+├── setup.py                             
+├── test_fallbacks.py                   
+└── .env.example                        
 ```
 
 ## Setup
@@ -32,8 +120,8 @@ conference-ai/
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/your-team/conference-ai
-cd conference-ai
+git clone https://github.com/Aditibharadwaj/Event_AI_Planner.git
+cd Event_AI_Planner
 pip install -r requirements.txt
 ```
 
@@ -41,12 +129,12 @@ pip install -r requirements.txt
 
 ```bash
 cp .env.example .env
-# Edit .env and add your ANTHROPIC_API_KEY
+# Edit .env and add your GROQ_API_KEY
 ```
 
 Or set it directly:
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-your-key-here
+export GROQ_API_KEY=gsk_your-key-here
 ```
 
 ### 3. Add Your Dataset
@@ -91,7 +179,7 @@ Open http://localhost:8501 in your browser.
 
 ## Tech Stack
 
-- **AI**: Anthropic Claude claude-sonnet-4-20250514 (all agent reasoning)
+- **AI**: Groq (LLaMA models for all agent reasoning)
 - **Vector DB**: ChromaDB + sentence-transformers (RAG)
 - **Data**: Pandas + OpenPyXL (Excel processing)
 - **ML**: NumPy + Scikit-learn (pricing regression)
@@ -107,4 +195,7 @@ The dataset covers 69 unique events (2025–2026) across:
 
 ## Team
 
-Built for Pinch × IIT Roorkee General Championship 2026.
+- Aditi B R  
+- Ansul  
+- Vaishnavi Kolgane  
+- Vanshmeet Kour 
