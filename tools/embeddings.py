@@ -8,8 +8,7 @@ import json
 import os
 
 COLLECTION_NAME = "conference_events"
-DB_PATH = os.path.join(os.path.dirname(__file__), "../data/chroma_db")
-
+DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../data/chroma_db")
 
 def _event_to_document(event: dict) -> str:
     """Serialize an event dict into a searchable text document."""
