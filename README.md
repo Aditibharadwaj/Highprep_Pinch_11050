@@ -77,8 +77,13 @@ The system generates a **complete conference plan** via a Streamlit dashboard.
 | GTM Strategy  | Marketing calendar + outreach templates         |
 | Schedule      | Conflict-free agenda                            |
 
+### Live Demo
+
+**Try the app here:**  
+🔗 [Event AI Planner](https://event-ai-planner.streamlit.app/)
+
 ---
-## Project Structure
+## 6. Project Structure
 
 ```
 ## 🖥️ Project Structure
@@ -115,34 +120,6 @@ Event_AI_Planner/
 └── .env.example                        
 ```
 
-## Setup
-
-### 1. Clone & Install
-
-```bash
-git clone https://github.com/Aditibharadwaj/Event_AI_Planner.git
-cd Event_AI_Planner
-pip install -r requirements.txt
-```
-
-### 2. Set Your API Key
-
-```bash
-cp .env.example .env
-# Edit .env and add your GROQ_API_KEY
-```
-
-Or set it directly:
-```bash
-export GROQ_API_KEY=gsk_your-key-here
-```
-
-### 3. Add Your Dataset
-
-Place your merged Excel file at:
-```
-data/events_merged_2025_2026.xlsx
-```
 
 Expected columns:
 - Event Name, Year, Category, Geography, City
@@ -151,19 +128,6 @@ Expected columns:
 - Sponsors, Key Speakers, Key Exhibitors
 - Website, Data Source
 
-### 4. Run Setup (builds vector index)
-
-```bash
-python setup.py
-```
-
-### 5. Launch the App
-
-```bash
-streamlit run ui/app.py
-```
-
-Open http://localhost:8501 in your browser.
 
 ## How Each Agent Works
 
@@ -174,8 +138,8 @@ Open http://localhost:8501 in your browser.
 | Exhibitor | category, geography, budget | Clustered exhibitors + pricing | Historical exhibitor data |
 | Venue | city, size, budget | 5 venues with scorecards | City tier + past events |
 | Pricing | category, geography, size | 3 pricing tiers + revenue model | Historical price statistics |
-| GTM | category, geography, date | Communities + 8-week plan | Curated Discord/Slack DB |
-| Event Ops | speakers from above | Full schedule + risk register | Claude reasoning |
+| GTM | category, geography, date | Communities + 8-week plan |  |
+| Event Ops | speakers from above | Full schedule + risk register | Dataset |
 
 ## Tech Stack
 
@@ -187,7 +151,7 @@ Open http://localhost:8501 in your browser.
 
 ## Data Sources
 
-The dataset covers 69 unique events (2025–2026) across:
+The dataset covers 120+ unique events (2025–2026) across:
 - **Geographies**: USA, Europe, India, Singapore
 - **Categories**: AI, Web3, ClimateTech, SaaS, Music Festivals, Sports, Startup/Tech
 - **Extraction method**: Manual curation from event websites, Eventbrite, LinkedIn Events, and Luma
